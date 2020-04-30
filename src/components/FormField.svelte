@@ -22,7 +22,7 @@
                 />
             {/if}
             {#if fieldType === 'textarea'}
-                <textarea class={fieldClasses} rows="10" cols="40" value={value}/>
+                <textarea name={name} class={fieldClasses} rows="10" cols="40" value={value}/>
             {/if}
         </div>
     </div>

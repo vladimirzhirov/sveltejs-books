@@ -1,4 +1,5 @@
-fgfdgfd
-ewerwerwer
+<script>
 
-<h2>sdrwerwerw</h2>
+</script>
+
+<h3>Тестовое приложение для изучения Svelte</h3>

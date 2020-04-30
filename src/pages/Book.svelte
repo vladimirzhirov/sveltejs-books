@@ -4,32 +4,32 @@
     import page from 'page';
     import axios from "axios";
 
-    let params = {};
+    export let params = {};
     let bookId = params.uid;
 
     let form;
     let files = [];
-    let btnText = bookId ? "Редактировать": "Создать";
+    let btnText = bookId ? "Редактировать" : "Создать";
 
     export const addBook = values => {
         return axios.post("http://localhost:4000/books/add", values);
     };
 
     export const updateBook = (id, values) => {
-        console.log(id, values);
-       // return axios.post(`http://localhost:4000/books/update/${id}`, values);
+        return axios.post(`http://localhost:4000/books/update/${id}`, values);
     };
 
-    const handleSubmit = (e, values) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         let data = new FormData(form);
-        debugger;
 
         data.append("filename", data.get("image").name);
 
         bookId
-                ? updateBook(bookId, data)
+                ? updateBook(bookId, data).then(() => {
+                    page("/books");
+                })
                 : addBook(data)
                         .then(() => {
                             page("/books");
@@ -104,7 +104,7 @@
                             name="description"
                             label="Description"
                             labelClasses="control-label"
-                            value={data.description ? data.description : ''}
+                            value={data.description}
                     />
                 </div>
             </div>
